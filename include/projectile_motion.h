@@ -1,6 +1,7 @@
 
 typedef struct {
     double initial_velocity;
+    double initial_height;
     double launch_angle;
     double vx;
     double vy;
