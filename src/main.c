@@ -11,7 +11,7 @@ int main(void)
     do {
         
         printf("------------------------------\n");
-         printf("Welcome to the Physics Toolkit\n");
+        printf("Welcome to the Physics Toolkit\n");
         printf("------------------------------\n");
 
         printf("\n");
