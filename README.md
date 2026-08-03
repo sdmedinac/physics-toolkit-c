@@ -126,6 +126,15 @@ Welcome to the Physics Toolkit
 
 The purpose of this project was to strengthen fundamental C programming skills through the implementation of classical kinematics problems while applying modular software design, input validation, and version control practices.
 
+## Project Status
+
+✅ Completed (v1.0)
+
+This project is considered complete as version 1.0.
+
+The objective of the project was to practice C programming, modular software design, input validation, code refactoring, and Git workflows through the implementation of classical kinematics problems.
+
+
 ## Author
 
 Samuel David Medina Contreras
