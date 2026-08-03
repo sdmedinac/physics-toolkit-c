@@ -2,6 +2,7 @@
 #include<math.h>
 #include "../include/free_fall.h"
 #include "../include/constants.h"
+#include "../include/input_utils.h"
 
 void free_fall(Free_Fall particle)
 {    
@@ -12,13 +13,7 @@ void free_fall(Free_Fall particle)
     printf("(2) Initial Downward Velocity\n");
     printf("(3) Initial Upward Velocity\n");
 
-    printf("Selection: ");
-    scanf("%d", &selection);
-    
-    while(selection < 1 || selection > 3){
-        printf("Invalid choice, try again: ");
-        scanf("%d", &selection);
-    }
+    selection = read_menu_option("\nSelection: ", 1, 3);
     
     switch (selection)
     {
@@ -27,13 +22,8 @@ void free_fall(Free_Fall particle)
         printf("\nReleased From Rest\n");
 
         particle.initial_velocity = 0; // Released from rest
-        printf("\nEnter initial height in (meters): ");
-        scanf("%lf", &particle.initial_height);
-    
-        while(particle.initial_height <= 0){
-            printf("Enter a height greater than zero: ");
-            scanf("%lf", &particle.initial_height);
-        }
+        particle.initial_height = read_positive_double("\nEnter initial height (m): ");
+        printf("\nInitial height: %.2fm\n", particle.initial_height);
     
         particle.distance = particle.initial_height;
 
@@ -49,21 +39,8 @@ void free_fall(Free_Fall particle)
 
         printf("\nInitial Downward Velocity\n");
 
-        printf("\nEnter initial height in (meters): ");
-        scanf("%lf", &particle.initial_height);
-    
-        while(particle.initial_height <= 0){
-            printf("Enter a height greater than zero: ");
-            scanf("%lf", &particle.initial_height);
-        }
-
-        printf("Enter the initial downward velocity in (meters/second): "); // User should enter a positive value
-        scanf("%lf", &particle.initial_velocity);
-
-        while(particle.initial_velocity <= 0){
-            printf("Enter a velocity greater than zero: ");
-            scanf("%lf", &particle.initial_velocity);
-        }
+        particle.initial_height = read_positive_double("\nEnter initial height (m): ");
+        particle.initial_velocity = read_positive_double("Enter the initial downward velocity in (m/s): ");
 
         printf("\nInitial height: %.2fm\n", particle.initial_height);
         printf("Initial downward velocity: %.2fm/s\n", particle.initial_velocity);
@@ -85,24 +62,12 @@ void free_fall(Free_Fall particle)
         
         printf("\nInitial Upward Velocity\n");
 
-        printf("\nEnter the initial upward velocity in (meters/second): "); // User should enter a positive value
-        scanf("%lf", &particle.initial_velocity);
-
-        while(particle.initial_velocity <= 0){
-            printf("Enter a velocity greater than zero: ");
-            scanf("%lf", &particle.initial_velocity);
-        }
+        particle.initial_velocity = read_positive_double("\nEnter the initial upward velocity in (m/s): ");
 
         printf("\nLaunch location\n");
         printf("(1) Ground level\n");
         printf("(2) Elevated position\n");
-        printf("Selection: ");
-        scanf("%d", &choice);
-
-        while(choice > 2 || choice < 1){
-            printf("Invalid choice, try again: ");
-            scanf("%d", &choice);
-        }
+        choice = read_menu_option("\nSelection: ", 1, 2);
 
         if(choice == 1){
             
@@ -122,13 +87,7 @@ void free_fall(Free_Fall particle)
         }
         else if(choice == 2){
             
-            printf("\nEnter initial height in (meters): ");
-            scanf("%lf", &particle.initial_height);
-    
-            while(particle.initial_height <= 0){
-                printf("Enter a height greater than zero: ");
-                scanf("%lf", &particle.initial_height);
-            }
+            particle.initial_height = read_positive_double("\nEnter initial height (m): ");
 
             printf("\nInitial upward velocity: %.2fm/s\n", particle.initial_velocity);
             printf("Initial height: %.2fm\n", particle.initial_height);

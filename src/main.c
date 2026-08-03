@@ -2,7 +2,7 @@
 #include "../include/projectile_motion.h"
 #include "../include/free_fall.h"
 #include "../include/linear_motion.h"
-
+#include "../include/input_utils.h"
 char try_again();   
 
 int main(void)
@@ -18,21 +18,18 @@ int main(void)
 
         printf("Toolkit: \n");
         printf("\n");
+        printf("(0) Exit.\n");
         printf("(1) Projectile Motion.\n");
         printf("(2) Free Fall.\n");
         printf("(3) Uniform Linear Motion (ULM).\n");
         printf("(4) Uniformly Accelerated Motion (UAM).\n");
         printf("\n");
-    
-        printf("Choose one option of the toolkit: ");
         
-        if((scanf("%d", &option) != 1)){
-            printf("\nInvalid input. Please enter a number.\n");
-            while(getchar() != '\n');
-            again = try_again();
-            continue;
+        option = read_menu_option("Choose one option of the toolkit: ",0 ,4);
+        if(option == 0){
+            printf("\nExiting Physics Toolkit...\n");
         }
-
+        
         switch (option)
         {
         case 1:
@@ -70,14 +67,13 @@ int main(void)
             printf("\nUniformly Accelerated Motion Module: \n");
             printf("**************************\n\n");
             
-            Linear_Motion x1;
-            accelerated_uniform_linear_motion(x1);
+            Linear_Motion object;
+            accelerated_uniform_linear_motion(object);
             
             again = try_again();
             break;
         default:
-            printf("Invalid choice\n");  
-            again = try_again();
+            
             break;
         }
 

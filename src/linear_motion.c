@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<math.h>
 #include "../include/linear_motion.h"
+#include "../include/input_utils.h"
 
 void uniform_linear_motion(Linear_Motion particle)
 {
@@ -11,13 +12,8 @@ void uniform_linear_motion(Linear_Motion particle)
     printf("\n(1) Calculate Distance\n");
     printf("(2) Calculate Time\n");
     printf("(3) Calculate Velocity\n");
-    printf("Selection: ");
-    scanf("%d", &selection);
-
-    while(selection < 1 || selection > 3){
-        printf("Invalid choice, try again: ");
-        scanf("%d", &selection);
-    }
+    
+    selection = read_menu_option("Selection: ",1, 3);
     
     switch (selection)
     {
@@ -28,24 +24,12 @@ void uniform_linear_motion(Linear_Motion particle)
         printf("Velocity\n");
         printf("Time\n");
 
-        printf("\nEnter the velocity in (meters/second): "); 
-        scanf("%lf", &particle.initial_velocity);
-        
-        while(particle.initial_velocity <= 0){
-            printf("Enter a velocity greater than zero: "); 
-            scanf("%lf", &particle.initial_velocity);
-        }
+        particle.initial_velocity = read_positive_double("\nEnter the velocity (m/s): ");
         
         particle.final_velocity = particle.initial_velocity; // ULM CONDITION
 
-        printf("Enter the time in (seconds): ");
-        scanf("%lf", &particle.time);
+        particle.time = read_positive_double("Enter the time (s): ");
         
-        while(particle.time <= 0){
-            printf("Enter a time greater than zero: "); 
-            scanf("%lf", &particle.time);
-        }
-
         printf("\nVelocity = %.2fm/s\n", particle.initial_velocity);
         printf("Time = %.2fs\n", particle.time);
 
@@ -61,24 +45,12 @@ void uniform_linear_motion(Linear_Motion particle)
         printf("Velocity\n");
         printf("Distance\n");
         
-        printf("\nEnter the velocity in (meters/second): "); 
-        scanf("%lf", &particle.initial_velocity);
-        
-        while(particle.initial_velocity <= 0){
-            printf("Enter a velocity greater than zero: "); 
-            scanf("%lf", &particle.initial_velocity);
-        }
+        particle.initial_velocity = read_positive_double("\nEnter the velocity (m/s): ");
         
         particle.final_velocity = particle.initial_velocity; // ULM CONDITION
         
-        printf("\nEnter the distance in (meters): ");
-        scanf("%lf", &particle.distance);
+        particle.distance = read_positive_double("Enter the distance (m): ");
         
-        while(particle.distance <= 0){
-            printf("Enter a distance greater than zero: "); 
-            scanf("%lf", &particle.distance);
-        }
-
         printf("\nVelocity = %.2fm/s\n", particle.initial_velocity);
         printf("Distance = %.2fm\n", particle.distance);
 
@@ -94,22 +66,9 @@ void uniform_linear_motion(Linear_Motion particle)
         printf("Time\n");
         printf("Distance\n");
         
-        printf("Enter the time in (seconds): ");
-        scanf("%lf", &particle.time);
+        particle.time = read_positive_double("\nEnter the time (s): ");
+        particle.distance = read_positive_double("Enter the distance (m): ");
         
-        while(particle.time <= 0){
-            printf("Enter a time greater than zero: "); 
-            scanf("%lf", &particle.time);
-        }
-
-        printf("Enter the distance in (meters): ");
-        scanf("%lf", &particle.distance);
-        
-        while(particle.distance <= 0){
-            printf("Enter a distance greater than zero: "); 
-            scanf("%lf", &particle.distance);
-        }
-
         printf("\nTime = %.2fs\n", particle.time);
         printf("Distance = %.2fm\n", particle.distance);
 
@@ -133,14 +92,9 @@ void accelerated_uniform_linear_motion(Linear_Motion particle)
     printf("(2) Calculate Final Velocity\n");
     printf("(3) Calculate Acceleration\n");
     printf("(4) Calculate Time\n");
-    printf("Selection: ");
-    scanf("%d", &selection);
-
-    while(selection < 1 || selection > 4){
-        printf("Invalid choice, try again: ");
-        scanf("%d", &selection);
-    }
-
+    
+    selection = read_menu_option("\nSelection: ", 1, 4);
+    
     switch (selection)
     {
     case 1:
@@ -152,29 +106,10 @@ void accelerated_uniform_linear_motion(Linear_Motion particle)
         printf("Initial Velocity\n");
         printf("Time\n");
 
-        printf("\nEnter the acceleration in (meters/second ^2): ");
-        scanf("%lf", &particle.acceleration);
-
-        while(particle.acceleration <= 0){
-        printf("Enter an acceleration greater than zero: ");
-        scanf("%lf", &particle.acceleration);
-        }
-
-        printf("Enter the initial velocity in (meters/second): ");
-        scanf("%lf", &particle.initial_velocity);
-
-        while(particle.initial_velocity < 0){
-        printf("Enter zero or a initial velocity greater than zero: ");
-        scanf("%lf", &particle.initial_velocity);
-        }
-
-        printf("Enter the time in seconds: ");
-        scanf("%lf", &particle.time);
-        while(particle.time <= 0){
-        printf("Enter a time greater than zero: ");
-        scanf("%lf", &particle.time);
-        }
-
+        particle.acceleration = read_positive_double("\nEnter the acceleration (m/s^2): ");
+        particle.initial_velocity = read_positive_double("Enter the initial velocity (m/s): ");
+        particle.time = read_positive_double("Enter the time (s): ");
+        
         printf("\nAcceleration: %.2fm/s^2\n", particle.acceleration);
         printf("Initial velocity: %.2fm/s\n", particle.initial_velocity);
         printf("Time in movement: %.2fs\n", particle.time);
@@ -193,29 +128,11 @@ void accelerated_uniform_linear_motion(Linear_Motion particle)
         printf("Initial Velocity\n");
         printf("Time\n");
 
-        printf("\nEnter the acceleration in (meters/second ^2): ");
-        scanf("%lf", &particle.acceleration);
+        particle.acceleration = read_positive_double("\nEnter the acceleration (m/s^2): ");
+        particle.initial_velocity = read_positive_double("Enter the initial velocity (m/s): ");
+        particle.time = read_positive_double("Enter the time (s): ");
 
-        while(particle.acceleration <= 0){
-            printf("Enter an acceleration greater than zero: ");
-            scanf("%lf", &particle.acceleration);
-        }
-
-        printf("Enter the initial velocity in (meters/second): ");
-        scanf("%lf", &particle.initial_velocity);
-
-        while(particle.initial_velocity < 0){
-            printf("Enter zero or a initial velocity greater than zero: ");
-            scanf("%lf", &particle.initial_velocity);
-        }
-
-        printf("Enter the time in seconds: ");
-        scanf("%lf", &particle.time);
-        while(particle.time <= 0){
-            printf("Enter a time greater than zero: ");
-            scanf("%lf", &particle.time);
-        }
-
+        
         printf("\nAcceleration: %.2fm/s^2\n", particle.acceleration);
         printf("Initial velocity: %.2fm/s\n", particle.initial_velocity);
         printf("Time in movement: %.2fs\n", particle.time);
@@ -233,29 +150,11 @@ void accelerated_uniform_linear_motion(Linear_Motion particle)
         printf("Initial Velocity\n");
         printf("Time\n");
 
-        printf("\nEnter the final velocity in (meters/second): ");
-        scanf("%lf", &particle.final_velocity);
-
-        while(particle.final_velocity < 0){
-            printf("Enter zero or a initial velocity greater than zero: ");
-            scanf("%lf", &particle.final_velocity);
-        }
-
-        printf("Enter the initial velocity in (meters/second): ");
-        scanf("%lf", &particle.initial_velocity);
-
-        while(particle.initial_velocity < 0){
-            printf("Enter zero or a initial velocity greater than zero: ");
-            scanf("%lf", &particle.initial_velocity);
-        }
+        particle.final_velocity = read_positive_double("\nEnter the final velocity (m/s): ");
+        particle.initial_velocity = read_positive_double("Enter the initial velocity (m/s): ");
+        particle.time = read_positive_double("Enter the time (s): ");
         
-        printf("Enter the time in seconds: ");
-        scanf("%lf", &particle.time);
-        while(particle.time <= 0){
-            printf("Enter a time greater than zero: ");
-            scanf("%lf", &particle.time);
-        }
-
+        
         printf("\nFinal velocity: %.2fm/s\n", particle.final_velocity);
         printf("Initial velocity: %.2fm/s\n", particle.initial_velocity);
         printf("Time in movement: %.2fs\n", particle.time);
@@ -274,30 +173,11 @@ void accelerated_uniform_linear_motion(Linear_Motion particle)
         printf("Initial Velocity\n");
         printf("Acceleration\n");
 
-        printf("\nEnter the final velocity in (meters/second): ");
-        scanf("%lf", &particle.final_velocity);
-
-        while(particle.final_velocity < 0){
-            printf("Enter zero or a initial velocity greater than zero: ");
-            scanf("%lf", &particle.final_velocity);
-        }
-
-        printf("Enter the initial velocity in (meters/second): ");
-        scanf("%lf", &particle.initial_velocity);
-
-        while(particle.initial_velocity < 0){
-            printf("Enter zero or a initial velocity greater than zero: ");
-            scanf("%lf", &particle.initial_velocity);
-        }
-
-        printf("Enter the acceleration in (meters/second ^2): ");
-        scanf("%lf", &particle.acceleration);
-
-        while(particle.acceleration <= 0){
-            printf("Enter an acceleration greater than zero: ");
-            scanf("%lf", &particle.acceleration);
-        }
+        particle.final_velocity = read_positive_double("\nEnter the final velocity (m/s): ");
+        particle.initial_velocity = read_positive_double("Enter the initial velocity (m/s): ");
+        particle.acceleration = read_positive_double("Enter the acceleration (m/s^2): ");
         
+
         printf("\nFinal velocity: %.2fm/s\n", particle.final_velocity);
         printf("Initial velocity: %.2fm/s\n", particle.initial_velocity);
         printf("Acceleration: %.2fm/s^2\n", particle.acceleration);
